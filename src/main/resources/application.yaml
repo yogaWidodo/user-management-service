@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: usermanagementservice
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+server:
+   port: 9301
+   servlet:
+     context-path: /user-management
+
+jwt:
+  secret-key: asdhjknbmnvjkdfsadhbwesdjkloyhkas
+  expired-in: 1 # Token expiration time in seconds (1 hour)
+
+logging:
+  level:
+    org.hibernate.sql: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
