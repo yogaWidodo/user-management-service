@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
 class AuthController(private val authService: AuthService) {
 
-    @PostMapping
+    @PostMapping("/register")
     fun registerUser(
         @RequestBody @Valid reqRegisterDTO: ReqRegisterDTO
     ): ResponseEntity<WebResponse<ResRegisterDTO>> {

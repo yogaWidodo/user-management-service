@@ -16,5 +16,5 @@ data class ReqRegisterDTO(
     @field:NotBlank(message = "Fullname is required")
     val fullName: String,
 
-    val roleIds: Int
+    val roleId: Int
 )

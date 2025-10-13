@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.batch15</groupId>
-    <artifactId>usermanagementservice</artifactId>
+    <artifactId>user-management-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>usermanagementservice</name>
     <description>User Management Service Bootcamp Techno Batch 15</description>
@@ -57,6 +57,16 @@
             <artifactId>jjwt-jackson</artifactId>
             <version>0.11.2</version>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>

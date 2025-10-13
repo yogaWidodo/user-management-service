@@ -34,7 +34,7 @@ data class MasterUserEntity(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id", nullable = true)
-    val role: MasterRoleEntity? = null,
+    val role: MasterRoleEntity,
 
     @CreationTimestamp
     @Column(name = "created_at",  nullable = false)
@@ -44,7 +44,7 @@ data class MasterUserEntity(
     val createdBy : String = "SYSTEM",
 
     @UpdateTimestamp
-    val updateAt: Timestamp? = null,
+    var updateAt: Timestamp? = null,
 
     @Column(name = "is_delete", nullable = false)
     var isDeleted: Boolean = false,

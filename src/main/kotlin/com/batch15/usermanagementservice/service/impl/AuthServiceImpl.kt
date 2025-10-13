@@ -21,8 +21,8 @@ class AuthServiceImpl(
     val jwtUtil: JwtUtil
 ) : AuthService {
     override fun registerUser(reqRegisterDTO: ReqRegisterDTO): ResRegisterDTO {
-        val roleId = masterRoleRepository.findById(reqRegisterDTO.roleIds).orElseThrow {
-            Exception("Role not found with id ${reqRegisterDTO.roleIds}")
+        val roleId = masterRoleRepository.findById(reqRegisterDTO.roleId).orElseThrow {
+            Exception("Role not found with id ${reqRegisterDTO.roleId}")
         }
         val registeredUser = masterUserRepository.findByUsername(reqRegisterDTO.username)
         if (registeredUser != null) {
@@ -51,7 +51,7 @@ class AuthServiceImpl(
                 throw Exception("Invalid username or password")
             }
             return ResLoginDTO(
-                token = jwtUtil.generateToken(user.id, user.role!!.name)
+                token = jwtUtil.generateToken(user.id, user.role.name)
             )
         }
     }

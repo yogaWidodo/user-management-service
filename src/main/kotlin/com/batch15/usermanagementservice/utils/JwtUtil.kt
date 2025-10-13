@@ -24,7 +24,7 @@ class JwtUtil(
         return Jwts.builder()
             .setSubject(userId.toString())
             .claim("userId", userId.toString())
-            .claim("authority", roleName ?: "user")
+            .claim("authority", roleName)
             .signWith(signingKey, signatureAlgorithm)
             .setExpiration(exp)
             .compact()

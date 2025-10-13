@@ -1,6 +1,6 @@
 spring:
   application:
-    name: usermanagementservice
+    name: user-management-service
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
@@ -17,6 +17,9 @@ server:
    port: 9301
    servlet:
      context-path: /user-management
+
+kafka:
+  bootstrap-servers: localhost:9092
 
 jwt:
   secret-key: asdhjknbmnvjkdfsadhbwesdjkloyhkas

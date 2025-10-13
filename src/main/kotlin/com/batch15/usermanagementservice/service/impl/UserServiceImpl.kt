@@ -1,11 +1,13 @@
 package com.batch15.usermanagementservice.service.impl
 
+import com.batch15.usermanagementservice.domain.constant.TopicKafka
 import com.batch15.usermanagementservice.domain.dto.res.WebResponse
 import com.batch15.usermanagementservice.domain.dto.res.resUser.ResGetUserByIdsDTO
 import com.batch15.usermanagementservice.domain.dto.res.resUser.ResUser
 import com.batch15.usermanagementservice.domain.dto.res.resUser.ResUserByID
 import com.batch15.usermanagementservice.domain.entity.MasterUserEntity
 import com.batch15.usermanagementservice.exception.CustomException
+import com.batch15.usermanagementservice.producer.KafkaProducer
 import com.batch15.usermanagementservice.repository.MasterUserRepository
 import com.batch15.usermanagementservice.service.UserService
 import jakarta.servlet.http.HttpServletRequest
@@ -15,7 +17,8 @@ import org.springframework.stereotype.Service
 @Service
 class UserServiceImpl(
     private val masterUserRepository: MasterUserRepository,
-    private val httpServletRequest: HttpServletRequest
+    private val httpServletRequest: HttpServletRequest,
+    private val kafkaProducer: KafkaProducer<Any>
 ) : UserService {
     override fun findAllUser(): List<ResUser> {
         val users = masterUserRepository.findUserByIsdeleted(false)
@@ -26,7 +29,7 @@ class UserServiceImpl(
                 fullName = user.fullName,
                 createdAt = user.createdAt!!,
                 createdBy = user.createdBy,
-                roleName = user.role!!.name
+                roleName = user.role.name
             )
         }
     }
@@ -64,6 +67,7 @@ class UserServiceImpl(
         }
         user.isDeleted = true
         masterUserRepository.save(user)
+        kafkaProducer.sendMessage(TopicKafka.DELETE_USER_PRODUCT,user.id)
         return WebResponse(
             data = "User with id $id has been soft deleted",
             message = "Soft delete user successfully"
