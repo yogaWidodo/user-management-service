@@ -40,9 +40,6 @@ data class MasterUserEntity(
     @Column(name = "created_at",  nullable = false)
     val createdAt : Timestamp? = null,
 
-    @Column(name = "created_by", nullable = false)
-    val createdBy : String = "SYSTEM",
-
     @UpdateTimestamp
     var updateAt: Timestamp? = null,
 

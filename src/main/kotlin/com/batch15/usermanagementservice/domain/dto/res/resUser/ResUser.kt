@@ -7,6 +7,5 @@ data class ResUser(
     val userName : String,
     val fullName : String,
     val createdAt : Timestamp,
-    val createdBy : String,
     val roleName : String,
 )

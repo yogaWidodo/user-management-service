@@ -2,7 +2,6 @@ package com.batch15.usermanagementservice.service.impl
 
 import com.batch15.usermanagementservice.domain.constant.TopicKafka
 import com.batch15.usermanagementservice.domain.dto.res.WebResponse
-import com.batch15.usermanagementservice.domain.dto.res.resUser.ResGetUserByIdsDTO
 import com.batch15.usermanagementservice.domain.dto.res.resUser.ResUser
 import com.batch15.usermanagementservice.domain.dto.res.resUser.ResUserByID
 import com.batch15.usermanagementservice.domain.entity.MasterUserEntity
@@ -28,7 +27,6 @@ class UserServiceImpl(
                 userName = user.username,
                 fullName = user.fullName,
                 createdAt = user.createdAt!!,
-                createdBy = user.createdBy,
                 roleName = user.role.name
             )
         }
@@ -43,9 +41,8 @@ class UserServiceImpl(
                 id = it.id,
                 userName = it.username,
                 fullName = it.fullName,
-                roleName = it.role?.name,
+                roleName = it.role.name,
                 createdAt = it.createdAt!!,
-                createdBy = it.createdBy,
                 updateAt = it.updateAt.toString()
             )
         }
@@ -72,14 +69,5 @@ class UserServiceImpl(
             data = "User with id $id has been soft deleted",
             message = "Soft delete user successfully"
         )
-    }
-
-    override fun getUserByUniqueIds(ids: List<Int>): List<ResGetUserByIdsDTO> {
-        return masterUserRepository.findUserByIds(ids).map {
-            ResGetUserByIdsDTO(
-                userId = it.id,
-                fullName = it.fullName
-            )
-        }
     }
 }

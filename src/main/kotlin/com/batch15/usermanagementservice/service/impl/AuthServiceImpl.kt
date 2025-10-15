@@ -11,7 +11,6 @@ import com.batch15.usermanagementservice.service.AuthService
 import com.batch15.usermanagementservice.utils.JwtUtil
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
-import java.util.UUID
 
 @Service
 class AuthServiceImpl(
@@ -38,7 +37,7 @@ class AuthServiceImpl(
         return ResRegisterDTO(
             username = user.username,
             fullName = user.fullName,
-            roleIds = user.role?.id
+            roleName = user.role.name
         )
     }
 

@@ -31,7 +31,7 @@ class AuthController(private val authService: AuthService) {
 
     @PostMapping("/login")
     fun loginUser(
-        @RequestBody reqLoginDTO: ReqLoginDTO
+        @RequestBody @Valid reqLoginDTO: ReqLoginDTO
     ): ResponseEntity<WebResponse<ResLoginDTO>> {
         return ResponseEntity.ok(
             WebResponse(

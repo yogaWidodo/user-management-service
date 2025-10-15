@@ -8,6 +8,5 @@ data class ResUserByID(
     val fullName: String,
     val roleName: String? = null,
     val createdAt: Timestamp,
-    val createdBy: String,
     val updateAt: String,
 )

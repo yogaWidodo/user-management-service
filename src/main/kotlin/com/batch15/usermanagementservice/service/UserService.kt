@@ -10,6 +10,4 @@ interface UserService {
     fun findAllUser(): List<ResUser>
     fun findUserById(id: Int): ResUserByID?
     fun softDeleteUser(id: Int): WebResponse<String>
-    fun getUserByUniqueIds(ids: List<Int>) : List<ResGetUserByIdsDTO>
-
 }
